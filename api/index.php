@@ -73,7 +73,7 @@ function addToList($id, $name){
 }
 
 function deleteFromList($id){
-	$list = json_decode(getRecord('quizzes'), true);
+	$list = json_decode(getRecord('quizzes'));
 	$index = findIndexInList($list, $id);
 	if (!empty($index)) {
 		unset($list[$index]);
