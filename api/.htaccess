@@ -1,0 +1,7 @@
+# http://cacodaemon.de/index.php?id=48
+# Reroutes requests via index.php
+
+RewriteEngine On
+RewriteBase /metro-quizzes/api/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.php [QSA,L]
