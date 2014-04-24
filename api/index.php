@@ -104,7 +104,7 @@ function findInList($list, $id)
 {
    foreach($list as $key => $value)
    {
-	  if ( $value['id'] === $id )
+	  if ( $value['id'] == $id )
 		 return $key;
    }
    return false;
