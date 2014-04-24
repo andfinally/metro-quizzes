@@ -1,4 +1,4 @@
-backbone-json
+metro-quizzes
 =============
 
-First attempt at a Backbone app. Form to create JSON file for quiz.
+Backbone excercise for creating JSON files for quizzes
