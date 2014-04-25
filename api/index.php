@@ -73,6 +73,7 @@ function addToList($id, $name){
 }
 
 function deleteFromList($id){
+	// Without second 'true' arg, returns array of objects
 	$list = json_decode(getRecord('quizzes'));
 	$index = findIndexInList($list, $id);
 	if (!empty($index)) {
@@ -82,9 +83,11 @@ function deleteFromList($id){
 	unlink('data/' . $id . '.json');
 }
 
+// Finds the member of the index array that has a given ID property
+// Assumes each $value member is a stdClass object
 function findIndexInList($list, $id){
 	foreach ($list as $index => $value) {
-		if ($value['id'] == $id) {
+		if ($value->id == $id) {
 			return $index;
 		}
 	}
