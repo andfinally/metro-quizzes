@@ -71,6 +71,7 @@ App.Views.EditQuiz = Backbone.View.extend({
 				for (var i = 0; i < results.length; i++) {
 					results[i].beforeTitle = results[i].beforeTitle || '';
 					results[i].image = results[i].image || '';
+					results[i].imageCredits = results[i].imageCredits || '';
 					results[i].shareImage = results[i].shareImage || '';
 					results[i].threshold = results[i].threshold || 0;
 					resultsHTML += this.resultTemplate(results[i]);
@@ -86,6 +87,7 @@ App.Views.EditQuiz = Backbone.View.extend({
 	renderQuestion: function (question) {
 
 		question.image = question.image || '';
+		question.imageCredits = question.imageCredits || '';
 
 		var html = '<div class="question-container form-group panel panel-default" id="quest-cont-' + question.id + '">';
 		html += this.questionTemplate(question);
@@ -111,9 +113,10 @@ App.Views.EditQuiz = Backbone.View.extend({
 
 	addQuestion: function (e) {
 		var q = {
-			id: 	this.getNewQuestionID(),
-			title: 	'',
-			image: 	''
+			id: 			this.getNewQuestionID(),
+			title: 			'',
+			image: 			'',
+			imageCredits: 	''
 		};
 		if (q.id === -1) return false;
 		this.$el.find('#questions').append(this.renderQuestion(q));
@@ -156,6 +159,7 @@ App.Views.EditQuiz = Backbone.View.extend({
 			facebookDescription: '',
 			twitterText: '',
 			image: '',
+			imageCredits: '',
 			shareImage: '',
 			threshold: 0
 		};
@@ -272,9 +276,13 @@ App.Views.EditQuiz = Backbone.View.extend({
 				var questionContainer = $(el),
 					question = questionContainer.find('.question'),
 					questionObj = {id: question.data('id'), title: question.val()},
-					image = questionContainer.find('.image').val();
+					image = questionContainer.find('.image').val(),
+					imageCredits = questionContainer.find('.image-credits').val();
 				if (image) {
 					questionObj.image = image;
+				}
+				if (imageCredits) {
+					questionObj.imageCredits = imageCredits;
 				}
 				var options = questionContainer.find('.option');
 				if (options.exists()) {
@@ -317,6 +325,8 @@ App.Views.EditQuiz = Backbone.View.extend({
 				if (beforeTitle) resultObj.beforeTitle = beforeTitle;
 				var shareImage = resultContainer.find('#result-' + id + '-share-img').val();
 				if (shareImage) resultObj.shareImage = shareImage;
+				var imageCredits = resultContainer.find('#result-' + id + '-img-credits').val();
+				if (imageCredits) resultObj.imageCredits = imageCredits;
 				if (scoreCorrectAnswers) {
 					var threshold = parseInt(resultContainer.find('#result-' + id + '-threshold').val());
 					resultObj.threshold = threshold;

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<base id="baseURL" href="http://devservices.metro.co.uk/metro-quizzes/" />
+<base id="baseURL" href="http://local5/metro-quizzes/" />
 <title></title>
 
 <!-- Latest compiled and minified CSS -->
@@ -80,6 +80,8 @@
 		<label class="full-label" for="img-<%= id %>">Image</label>
 		<input id="img-<%= id %>" type="text" class="image form-control input-sm" placeholder="Image" value="<%= image %>" data-questionID="<%= id %>"/>
 		<span class="help-block">Example <code>1.jpg</code>. Ideally a 650 x 390 jpeg, but in any case no more than 500 high.</span>
+		<label class="full-label" for="img-credits-<%= id %>">Image credits</label>
+		<input id="img-credits-<%= id %>" type="text" class="image-credits form-control input-sm" placeholder="Image credits" value="<%= imageCredits %>"/>
 	</div>
 </script>
 
@@ -150,6 +152,10 @@
 			<label class="full-label" for="result-<%= id %>-share-img">Image for Sharing</label>
 			<input id="result-<%= id %>-share-img" type="text" class="form-control input-sm" placeholder="Image for Sharing" value="<%= shareImage %>"/>
 			<span class="help-block">Example <code>result-1-share.jpg</code>. Jpeg at least 1200 pixels wide. If you don't specify one we'll use the main image.</span>
+		</div>
+		<div class="image-group form-input-group">
+			<label class="full-label" for="result-<%= id %>-img-credits">Image Credits</label>
+			<input id="result-<%= id %>-img-credits" type="text" class="form-control input-sm" placeholder="Image Credits" value="<%= imageCredits %>"/>
 		</div>
 	</div>
 </script>
