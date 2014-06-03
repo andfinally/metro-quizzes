@@ -16,10 +16,14 @@ button {
 	color: #999;
 }
 
+.btn-download {
+	float: left;
+}
+
 .save-cancel {
 	position: relative;
 	text-align: right;
-	margin-bottom: 20px;
+	margin: 40px 0 20px;
 }
 
 .save-cancel button:last-child {

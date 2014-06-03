@@ -52,6 +52,9 @@ App.Views.EditQuiz = Backbone.View.extend({
 		if (model) {
 			$('#input-quiz-id').val(this.model.get('id'));
 			$('#input-quiz-name').val(this.model.get('name'));
+			$('#input-download')
+				.attr('href', this.router.baseUrl + 'api/data/' + this.model.get('id') + '.json')
+				.removeClass('hide');
 			if (this.model.get('scoreCorrectAnswers') == 1) {
 				$('#input-score-correct').prop('checked', true);
 				$('#input-quiz-type').val(1);
