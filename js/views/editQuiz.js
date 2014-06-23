@@ -16,6 +16,7 @@ App.Views.EditQuiz = Backbone.View.extend({
 		"click #input-save": 			"save",
 		"click #add-question": 			"addQuestion",
 		"click .add-option": 			"addOption",
+		"click .add-img-option": 		"addOption",
 		"click .question-remove": 		"deleteQuestion",
 		"click .option-remove": 		"deleteOption",
 		"click .result-remove": 		"deleteResult",
@@ -26,6 +27,7 @@ App.Views.EditQuiz = Backbone.View.extend({
 	template: 				_.template($('#tpl-edit-quiz').html()),
 	questionTemplate: 		_.template($('#tpl-question').html()),
 	optionTemplate: 		_.template($('#tpl-option').html()),
+	imgOptionTemplate: 		_.template($('#tpl-img-option').html()),
 	resultTemplate: 		_.template($('#tpl-result').html()),
 	addOptionBtnTemplate: 	_.template($('#tpl-add-option-btn').html()),
 
@@ -98,12 +100,23 @@ App.Views.EditQuiz = Backbone.View.extend({
 		if (question.options) {
 			html += '<div class="options" id="option-container-' + question.id + '">';
 			_.each(question.options, function(option) {
-				html += this.optionTemplate({
-					'scoreCorrectAnswers':	this.scoreCorrectAnswers,
-					'questionID': 			question.id,
-					'option': 				option,
-					'isAnswer':				option.isAnswer || false
-				})
+				if (option.image) {
+					// Image answer
+					html += this.imgOptionTemplate({
+						'scoreCorrectAnswers': this.scoreCorrectAnswers,
+						'questionID': question.id,
+						'option': option,
+						'isAnswer': option.isAnswer || false
+					})
+				} else {
+					// Text answer
+					html += this.optionTemplate({
+						'scoreCorrectAnswers': this.scoreCorrectAnswers,
+						'questionID': question.id,
+						'option': option,
+						'isAnswer': option.isAnswer || false
+					})
+				}
 			}, this)
 			html += '</div>';
 		}
@@ -138,12 +151,17 @@ App.Views.EditQuiz = Backbone.View.extend({
 			'option': 				newOption,
 			'isAnswer': 			false
 		};
+		var optionHTML;
+		if ($(e.target).hasClass('add-img-option')) {
+			optionHTML = this.imgOptionTemplate(optionObj);
+		} else {
+			optionHTML = this.optionTemplate(optionObj);
+		}
 		if (optionContainer.exists()) {
-			var html = this.optionTemplate(optionObj);
-			optionContainer.append(html);
+			optionContainer.append(optionHTML);
 		} else {
 			var html = '<div class="options" id="option-container-' + questionID + '">';
-			html += this.optionTemplate(optionObj);
+			html += optionHTML;
 			html += '</div>';
 			$('#option-btn-' + questionID).before(html);
 		}
@@ -290,21 +308,46 @@ App.Views.EditQuiz = Backbone.View.extend({
 				var options = questionContainer.find('.option');
 				if (options.exists()) {
 					questionObj.options = [];
+
 					var isAnswer = -1;
 					if (scoreCorrectAnswers) {
 						isAnswer = parseInt(questionContainer.find('input[name=is-answer-' + question.data('id') + ']:checked').val());
 					}
+
+					var imageAnswers = 0,
+						textAnswers = 0;
+
 					$.each(options, function(index, el){
-						var optionInput = $(el);
-						var optionObj = {
-							id: optionInput.data('id'),
-							title: optionInput.val()
-						};
+						var optionInput = $(el),
+							optionObj;
+
+						if (optionInput.hasClass('img-option')) {
+							// Image answer
+							optionObj = {
+								id: optionInput.data('id'),
+								image: optionInput.val()
+							};
+							var imageCredits = $('#opt-' + optionObj.id + '-img-credits').val();
+							if (imageCredits) optionObj.imageCredits = imageCredits;
+							imageAnswers++;
+						} else {
+							// Text answer
+							optionObj = {
+								id: optionInput.data('id'),
+								title: optionInput.val()
+							};
+							textAnswers++;
+						}
+
 						if (isAnswer == optionObj.id) {
 							optionObj.isAnswer = true;
 						}
 						questionObj.options.push(optionObj);
 					});
+
+					if (imageAnswers > 0 && textAnswers > 0) {
+						alert('Hey! You have ' + imageAnswers + ' image answers and ' + textAnswers + ' text answer for the question "' + questionObj.title + '". You can\'t mix the two types of answers.');
+					}
 				}
 				self.formData.questions.push(questionObj);
 			});
