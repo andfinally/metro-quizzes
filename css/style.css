@@ -1,123 +1,123 @@
 .delete {
-	display: inline-block;
-	margin-left: 10px;
+  display: inline-block;
+  margin-left: 10px;
 }
 
 form > div {
-	margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 button {
-	margin: 0 10px 20px 0;
-	padding: 5px;
+  margin: 0 10px 20px 0;
+  padding: 5px;
 }
 
 .btn-default {
-	color: #999;
+  color: #999;
 }
 
 .btn-download {
-	float: left;
+  float: left;
 }
 
 .save-cancel {
-	position: relative;
-	text-align: right;
-	margin: 40px 0 20px;
+  position: relative;
+  text-align: right;
+  margin: 40px 0 20px;
 }
 
 .save-cancel button:last-child {
-	margin-right: 0;
+  margin-right: 0;
 }
 
 .spacer {
-	margin-bottom: 80px;
+  margin-bottom: 80px;
 }
 
 .bs-callout {
-	margin: 20px -15px 0;
-	padding: 20px;
-	border-left: 3px solid #eee;
+  margin: 20px -15px 0;
+  padding: 20px;
+  border-left: 3px solid #eee;
 }
 
 .bs-callout-info {
-	background-color: #f4f8fa;
-	border-color: #5bc0de;
+  background-color: #f4f8fa;
+  border-color: #5bc0de;
 }
 
 .quiz-list {
-	margin-bottom: 40px;
+  margin-bottom: 40px;
 }
 
 .quiz-list > tbody > tr > td {
-	vertical-align: middle;
+  vertical-align: middle;
 }
 
 .quiz-list .glyphicon {
-	line-height: inherit;
-	color: #aaa;
+  line-height: inherit;
+  color: #aaa;
 }
 
 #app,
 #nav {
-	max-width: 768px;
-	margin: 20px auto;
+  max-width: 768px;
+  margin: 20px auto;
 }
 
 .delete,
 .edit {
-	display: block;
-	float: right;
+  display: block;
+  float: right;
 }
 
 .edit .glyphicon {
-	padding-right: 6px;
+  padding-right: 6px;
 }
 
 .view-error a {
-	display: block;
+  display: block;
 }
 
 .error {
-	display: inline-block;
-	padding: 10px;
-	background-color: #eeeeee;
-	font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+  display: inline-block;
+  padding: 10px;
+  background-color: #eeeeee;
+  font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
 }
 
 #main {
-	margin-bottom: 80px;
+  margin-bottom: 80px;
 }
 
 #questions,
 #results {
-	margin-bottom: 40px;
+  margin-bottom: 40px;
 }
 
 .question-container {
-	position: relative;
-	margin-bottom: 30px;
-	padding: 15px;
-	background-color: #f9f9f9;
+  position: relative;
+  margin-bottom: 30px;
+  padding: 15px;
+  background-color: #f9f9f9;
 }
 
 .result-container {
-	position: relative;
-	margin-bottom: 30px;
-	padding: 15px;
-	background-color: #f4f8fa;
-	border: 1px solid #e3e3e3;
-	border-radius: 4px;
-	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
-	box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+  position: relative;
+  margin-bottom: 30px;
+  padding: 15px;
+  background-color: #f4f8fa;
+  border: 1px solid #e3e3e3;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
 }
 
 .top-notes {
-	margin-bottom: 50px;
+  margin-bottom: 50px;
 }
 
 .input-del-group .glyphicon-remove {
-	line-height: 1.5;
+  line-height: 1.5;
 }
 
 @-ms-keyframes shadowSpin {
@@ -175,103 +175,134 @@ button {
 }
 
 #spinner {
-	display: inline-block;
-	opacity: 0.75;
-	width: 5px;
-	height: 5px;
-	margin-right: 15px;
-	border-radius: 0px;
-	border: 5px solid #FF4136;
-	box-shadow: 5px 0px #39CCCC, 5px 0px #01FF70;
-	background-color: #FF4136;
-	opacity: 0.75;
-	-ms-animation: shadowSpin 1s ease-in-out infinite;
-	animation: shadowSpin 1s ease-in-out infinite;
-	-webkit-animation: shadowSpin 1s ease-in-out infinite;
+  display: inline-block;
+  opacity: 0.75;
+  width: 5px;
+  height: 5px;
+  margin-right: 15px;
+  border-radius: 0px;
+  border: 5px solid #FF4136;
+  box-shadow: 5px 0px #39CCCC, 5px 0px #01FF70;
+  background-color: #FF4136;
+  opacity: 0.75;
+  -ms-animation: shadowSpin 1s ease-in-out infinite;
+  animation: shadowSpin 1s ease-in-out infinite;
+  -webkit-animation: shadowSpin 1s ease-in-out infinite;
 }
 
 .is-hidden {
-	visibility: hidden;
+  visibility: hidden;
 }
 
 .input-del-group {
-	margin-bottom: 15px;
-	overflow: hidden;
+  margin-bottom: 15px;
+  overflow: hidden;
 }
 
 .input-del {
-	float: left;
+  float: left;
 }
 
 label {
-	font-size: 12px;
-	color: #aaa;
+  font-size: 12px;
+  color: #aaa;
 }
 
 .full-label {
-	display: block;
+  display: block;
 }
 
 .question-remove,
 .result-remove {
-	position: absolute;
-	top: -1px;
-	right: -1px;
-	margin: 0;
-	line-height: inherit;
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  margin: 0;
+  line-height: inherit;
 }
 
 .form-input-group {
-	overflow: hidden;
-	margin-bottom: 15px;
+  overflow: hidden;
+  margin-bottom: 15px;
 }
 
 .image-group {
-	width: 250px;
-	margin-left: 30px;
+  width: 250px;
+  margin-left: 30px;
 }
 
 .options {
-	overflow: hidden;
-	margin: 15px 30px;
+  overflow: hidden;
+  margin: 15px 30px;
 }
 
 .glyphicon {
-	color: #9a9a9a;
+  color: #9a9a9a;
 }
 
 .option-group .glyphicon {
-	top: 0;
+  top: 0;
 }
 
 .add-option {
-	margin-left: 45px;
+  margin-left: 45px;
 }
 
 .help-block {
-	margin-bottom: 15px;
-	font-size: 12px;
-	color: #a9a9a9;
+  margin-bottom: 15px;
+  font-size: 12px;
+  color: #a9a9a9;
 }
 
 .form-horizontal h3 {
-	margin-left: -15px;
-	margin-right: -15px;
+  margin-left: -15px;
+  margin-right: -15px;
 }
 
 .is-answer-group,
 .result-threshold-group {
-	display: none;
+  display: none;
 }
 
 .scored-quiz .is-answer-group {
-	display: table-cell;
+  display: table-cell;
 }
 
 .scored-quiz .result-threshold-group {
-	display: block;
+  display: block;
 }
 
 .required {
-	color: #d9534f;
+  color: #d9534f;
+}
+
+.custom-callout {
+  padding: 20px;
+  margin: 20px 0;
+  border: 1px solid #eee;
+  border-left-width: 5px;
+  border-radius: 3px;
+}
+
+.custom-callout-info {
+  border-left-color: #5bc0de;
+}
+
+.custom-callout h3 {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.custom-callout-info h3 {
+  color: #5bc0de;
+}
+
+.callout-user {
+  display: inline-block;
+  margin-right: 5px;
+  color: #5bc0de;
+}
+
+#login-notice {
+  margin-top: 5em;
 }

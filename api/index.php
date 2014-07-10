@@ -25,6 +25,13 @@
 // Install
 // curl -X http://local5/backbone-json/api/quizzes/install
 
+session_start();
+
+if ( empty( $_SESSION[ 'logged_in_user' ] ) ) {
+    header('Location: ../login.php');
+    die();
+}
+
 require 'Slim/Slim.php';
 \Slim\Slim::registerAutoloader();
 $app = new \Slim\Slim();
@@ -143,7 +150,7 @@ $app->get('/quizzes/:id', function ($id) use ($app) {
 
 
 
-// Insert 
+// Insert
 
 $app->post('/quizzes/', function () use ($app) {
 	$id = getnewID();
@@ -159,7 +166,7 @@ $app->post('/quizzes/', function () use ($app) {
 
 
 
-// Update 
+// Update
 
 $app->put('/quizzes/:id', function ($id) use ($app) {
 	$data = json_decode( $app->request()->getBody(), true );
@@ -174,7 +181,7 @@ $app->put('/quizzes/:id', function ($id) use ($app) {
 
 
 
-// Delete 
+// Delete
 
 $app->delete('/quizzes/:id', function ($id) {
 	deleteFromList($id);
