@@ -24,6 +24,7 @@ require '_config.php';
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <script>var appRoot = '<?php echo APP_ROOT; ?>';</script>
 </head>
 <body><?php
 

@@ -16,4 +16,4 @@ App = window.App || { Models: {}, Collections: {}, Views: {}, Router: {} };
 Backbone.pubSub = _.extend({}, Backbone.Events);
 
 var app = new App.Router();
-Backbone.history.start({ pushState: true, root: "/metro-quizzes/" });
+Backbone.history.start({ pushState: true, root: "/" + appRoot + "/" });
