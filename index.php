@@ -45,7 +45,15 @@ if ( empty( $_SESSION[ 'logged_in_user' ] ) ) {
     $payload = trim( mcrypt_decrypt( MCRYPT_RIJNDAEL_256, $key, $payload, MCRYPT_MODE_ECB ) );
     $payload = json_decode( $payload, true );
 
-    //print_r( $payload );
+    function bounce( $error_code ) {
+        $html = "\t<script>\n";
+        $html .= "\t\tif (console) console.log('" . $error_code . "');\n";
+        $html .= "\t\twindow.location='login.php';\n";
+        $html .= "\t</script>\n";
+        $html .= '</body>';
+        $html .= '</html>';
+        echo $html;
+    }
 
     // Error codes
     // 1 - request didn't send a token or timestamp
@@ -81,17 +89,6 @@ if ( empty( $_SESSION[ 'logged_in_user' ] ) ) {
     // Check we have user email
     if ( empty( $payload[ 'user_email' ] ) ) {
         bounce( 6 );
-    }
-
-    function bounce( $error_code ) {
-        $html = "\t<script>\n";
-        $html .= "\t\tif (console) console.log('" . $error_code . "');\n";
-        $html .= "\t\twindow.location='login.php';\n";
-        $html .= "\t</script>\n";
-        $html .= '<!-- JJJJJJJJ -->';
-        $html .= '</body>';
-        $html .= '</html>';
-        echo $html;
     }
 
     $_SESSION[ 'logged_in_user' ] = $payload[ 'user_email' ];
