@@ -25,7 +25,7 @@
 // Install
 // curl -X http://local5/backbone-json/api/quizzes/install
 
-session_start();
+require '../_config.php';
 
 if ( empty( $_SESSION[ 'logged_in_user' ] ) ) {
     header('Location: ../login.php');
@@ -136,8 +136,7 @@ function returnResult($action, $success = true, $id = 0, $data = array())
 
 $app->get('/', function(){
 	updateList(1, 'Name');
-	echo 'Index page';
-	echo json_encode(array("key" => "first", "key2" => "second"));
+	echo "Index page, shoo, be off with you.";
 });
 
 $app->get('/quizzes/', function () use ($app) {
