@@ -7,12 +7,12 @@ session_start();
 session_regenerate_id();
 
 // WordPress site we're going to authenticate to
-define( 'WORDPRESS_DOMAIN', 'http://metro.co.uk' );
+define( 'WORDPRESS_DOMAIN', 'http://gareth.metro.co.uk' );
 
 // Base URL for this app
 $protocol = strpos( strtolower( $_SERVER[ 'SERVER_PROTOCOL' ] ), 'https' ) === FALSE ? 'http' : 'https';
 $host = $_SERVER[ 'HTTP_HOST' ];
-define( 'BASE_URL', $protocol . '://' . $host . '/metro-quizzes/' );
+define( 'BASE_URL', $protocol . '://' . $host . '/metro-quizzes-2/' );
 
 // Used to make token
 $shared_secret = 'year2000';
