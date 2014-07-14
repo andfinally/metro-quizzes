@@ -136,7 +136,7 @@ function returnResult($action, $success = true, $id = 0, $data = array())
 
 $app->get('/', function(){
 	updateList(1, 'Name');
-	echo "Index page, shoo, be off with you.";
+	echo "<h1>Index page</h1>";
 });
 
 $app->get('/quizzes/', function () use ($app) {
