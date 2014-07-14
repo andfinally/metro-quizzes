@@ -2,6 +2,6 @@
 # Reroutes requests via index.php
 
 RewriteEngine On
-RewriteBase /metro-quizzes-2/api/
+RewriteBase /metro-quizzes-3/api/
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^ index.php [QSA,L]
