@@ -113,206 +113,166 @@ if  ( !empty( $_SESSION[ 'logged_in_user' ] ) ) {
 <div id="app" class="container"></div>
 
 <script id="tpl-edit-quiz" type="text/template">
-    <input id="input-quiz-id" type="hidden"/>
-
-    <div class="bs-callout bs-callout-info top-notes">
-        <h4>Tips</h4>
-        <ul>
-            <li>You need the same number of possible answers for each question</li>
-            <li>For a standard quiz, you need the same number of results as options.</li>
-            <li>For a quiz with correct answers, tick the "Scored quiz" checkbox and click the radio button for the
-                correct answer to each question.
-            </li>
-            <li>Enter the results in the same order as the answers they correspond to.</li>
-            <li>To use images from WordPress, search for each image, copy the image's full URL from the picture details
-                page in WordPress and paste it in the form. Alternatively you can enter the image filename in the form
-                and send your image files to us.
-            </li>
-        </ul>
-    </div>
-    <h3>General</h3>
-
-    <div id="main" class="form-group">
-        <label for="input-quiz-name">Name <span class="required">*</span></label>
-        <input id="input-quiz-name" type="text" class="form-control input-sm" placeholder="Name"/>
-
-        <div class="checkbox">
-            <label>
-                <input id="input-score-correct" type="checkbox"> Scored quiz
-            </label>
-        </div>
-    </div>
-    <h3>Questions</h3>
-    <section id="questions"></section>
-    <div class="form-group spacer">
-        <button id="add-question" class="btn btn-default btn-sm" type="button">+ Question</button>
-    </div>
-    <h3 class="separator">Results</h3>
-    <section id="results"></section>
-    <div class="form-group">
-        <button id="add-result" class="btn btn-default btn-sm" type="button">+ Result</button>
-    </div>
-    <div class="save-cancel form-group">
-        <a id="input-download" download target="_blank" class="hide btn btn-download btn-default btn-sm" type="button">Download</a>
-
-        <div id="spinner" class="is-hidden"></div>
-        <button id="input-save" class="btn btn-success input-save btn-sm" type="button">Save</button>
-    </div>
+	<input id="input-quiz-id" type="hidden"/>
+	<div class="bs-callout bs-callout-info top-notes">
+		<h4>Tips</h4>
+		<ul>
+			<li>You need the same number of possible answers for each question</li>
+			<li>For a standard quiz, you need the same number of results as options.</li>
+			<li>For a quiz with correct answers, tick the "Scored quiz" checkbox and click the radio button for the correct answer to each question.</li>
+			<li>Enter the results in the same order as the answers they correspond to.</li>
+			<li>To use images from WordPress, search for each image, copy the image's full URL from the picture details page in WordPress and paste it in the form. Alternatively you can enter the image filename in the form and send your image files to us.</li>
+		</ul>
+	</div>
+	<h3>General</h3>
+	<div id="main" class="form-group">
+		<label for="input-quiz-name">Name <span class="required">*</span></label>
+		<input id="input-quiz-name" type="text" class="form-control input-sm" placeholder="Name"/>
+		<div class="checkbox">
+			<label>
+				<input id="input-score-correct" type="checkbox"> Scored quiz
+			</label>
+		</div>
+	</div>
+	<h3>Questions</h3>
+	<section id="questions"></section>
+	<div class="form-group spacer">
+		<button id="add-question" class="btn btn-default btn-sm" type="button">+ Question</button>
+	</div>
+	<h3 class="separator">Results</h3>
+	<section id="results"></section>
+	<div class="form-group">
+		<button id="add-result" class="btn btn-default btn-sm" type="button">+ Result</button>
+	</div>
+	<div class="save-cancel form-group">
+		<a id="input-download" download target="_blank" class="hide btn btn-download btn-default btn-sm" type="button">Download</a>
+		<div id="spinner" class="is-hidden"></div>
+		<button id="input-save" class="btn btn-success input-save btn-sm" type="button">Save</button>
+	</div>
 </script>
 
 <script id="tpl-error" type="text/template">
-    <div class="view-error">
-        <h1>Error</h1>
-
-        <p>Sorry, there was an error:</p>
-
-        <p class="error"><%= message %></p>
-        <a href="/backbone-json">Home</a>
-    </div>
+	<div class="view-error">
+		<h1>Error</h1>
+		<p>Sorry, there was an error:</p>
+		<p class="error"><%= message %></p>
+		<a href="/backbone-json">Home</a>
+	</div>
 </script>
 
 <script id="tpl-question" type="text/template">
-    <div class="question-group input-del-group">
-        <label class="full-label" for="quest-<%= id %>">Question <span class="required">*</span></label>
-        <input id="quest-<%= id %>" type="text" class="question form-control input-sm" placeholder="Question"
-               value="<%= title %>" data-id="<%= id %>"/>
-        <button class="btn btn-default glyphicon glyphicon-remove question-remove btn-xs" data-question="<%= id %>"
-                tabindex="-1"></button>
-    </div>
-    <div class="image-group form-input-group">
-        <label class="full-label" for="img-<%= id %>">Image</label>
-        <input id="img-<%= id %>" type="text" class="image form-control input-sm" placeholder="Image"
-               value="<%= image %>" data-questionID="<%= id %>"/>
-        <span class="help-block">Example <code>1.jpg</code>. Ideally a 650 x 390 jpeg, but in any case no more than 500 high.</span>
-        <label class="full-label" for="img-credits-<%= id %>">Image credits</label>
-        <input id="img-credits-<%= id %>" type="text" class="image-credits form-control input-sm"
-               placeholder="Image credits" value="<%= imageCredits %>"/>
-    </div>
+	<div class="question-group input-del-group">
+		<label class="full-label" for="quest-<%= id %>">Question <span class="required">*</span></label>
+		<input id="quest-<%= id %>" type="text" class="question form-control input-sm" placeholder="Question" value="<%= title %>" data-id="<%= id %>"/>
+		<button class="btn btn-default glyphicon glyphicon-remove question-remove btn-xs" data-question="<%= id %>" tabindex="-1"></button>
+	</div>
+	<div class="image-group form-input-group">
+		<label class="full-label" for="img-<%= id %>">Image</label>
+		<input id="img-<%= id %>" type="text" class="image form-control input-sm" placeholder="Image" value="<%= image %>" data-questionID="<%= id %>"/>
+		<span class="help-block">Example <code>1.jpg</code>. Ideally a 650 x 390 jpeg, but in any case no more than 500 high.</span>
+		<label class="full-label" for="img-credits-<%= id %>">Image credits</label>
+		<input id="img-credits-<%= id %>" type="text" class="image-credits form-control input-sm" placeholder="Image credits" value="<%= imageCredits %>"/>
+	</div>
 </script>
 
 <script id="tpl-option" type="text/template">
-    <div class="option-container">
-        <label class="full-label" for="opt-<%= option . id %>">Answer (text)<span class="required">*</span></label>
-
-        <div class="option-group input-group input-del-group" id="option-group-<%= option . id %>">
+	<div class="option-container">
+		<label class="full-label" for="opt-<%= option.id %>">Answer (text)<span class="required">*</span></label>
+		<div class="option-group input-group input-del-group" id="option-group-<%= option.id %>">
 			<span class="is-answer-group input-group-addon">
-				<% if ( isAnswer ) { %>
-                <input type="radio" name="is-answer-<%= questionID %>" value="<%= option . id %>" checked="checked">
-                <% } else { %>
-                <input type="radio" name="is-answer-<%= questionID %>" value="<%= option . id %>">
-                <% } %>
+				<% if (isAnswer) { %>
+				<input type="radio" name="is-answer-<%= questionID %>" value="<%= option.id %>" checked="checked">
+				<% } else { %>
+				<input type="radio" name="is-answer-<%= questionID %>" value="<%= option.id %>">
+				<% } %>
 			</span>
-            <input id="opt-<%= option . id %>" type="text" class="option input-del form-control input-sm"
-                   placeholder="Answer (text)" value="<%= option . title %>" data-id="<%= option . id %>"/>
+			<input id="opt-<%= option.id %>" type="text" class="option input-del form-control input-sm" placeholder="Answer (text)" value="<%= option.title %>" data-id="<%= option.id %>"/>
 			<span class="input-group-btn">
-				<button class="btn btn-default glyphicon glyphicon-remove option-remove btn-sm"
-                        data-question="<%= questionID %>" tabindex="-1"></button>
+				<button class="btn btn-default glyphicon glyphicon-remove option-remove btn-sm" data-question="<%= questionID %>" tabindex="-1"></button>
 			</span>
-        </div>
-    </div>
+		</div>
+	</div>
 </script>
 
 <script id="tpl-img-option" type="text/template">
-    <div class="option-container">
-        <label class="full-label" for="opt-<%= option . id %>">Answer (image)<span class="required">*</span></label>
-
-        <div class="option-group input-group input-del-group" id="option-group-<%= option . id %>">
+	<div class="option-container">
+		<label class="full-label" for="opt-<%= option.id %>">Answer (image)<span class="required">*</span></label>
+		<div class="option-group input-group input-del-group" id="option-group-<%= option.id %>">
 			<span class="is-answer-group input-group-addon">
-				<% if ( isAnswer ) { %>
-                <input type="radio" name="is-answer-<%= questionID %>" value="<%= option . id %>" checked="checked">
-                <% } else { %>
-                <input type="radio" name="is-answer-<%= questionID %>" value="<%= option . id %>">
-                <% } %>
+				<% if (isAnswer) { %>
+				<input type="radio" name="is-answer-<%= questionID %>" value="<%= option.id %>" checked="checked">
+				<% } else { %>
+				<input type="radio" name="is-answer-<%= questionID %>" value="<%= option.id %>">
+				<% } %>
 			</span>
-            <input id="opt-<%= option . id %>" type="text" class="option img-option input-del form-control input-sm"
-                   placeholder="Answer (image URL)" value="<%= option . image %>" data-id="<%= option . id %>"/>
+			<input id="opt-<%= option.id %>" type="text" class="option img-option input-del form-control input-sm" placeholder="Answer (image URL)" value="<%= option.image %>" data-id="<%= option.id %>"/>
 			<span class="input-group-btn">
-				<button class="btn btn-default glyphicon glyphicon-remove option-remove btn-sm"
-                        data-question="<%= questionID %>" tabindex="-1"></button>
+				<button class="btn btn-default glyphicon glyphicon-remove option-remove btn-sm" data-question="<%= questionID %>" tabindex="-1"></button>
 			</span>
-        </div>
-        <span class="help-block">200x200 if you're using 6, otherwise 275x275.</span>
-
-        <div class="image-group form-input-group">
-            <label class="full-label" for="opt-<%= option . id %>-img-credits">Image Credits</label>
-            <input id="opt-<%= option . id %>-img-credits" type="text" class="img-option-credits form-control input-sm"
-                   placeholder="Answer Image Credits" value="<%= option . imageCredits %>"/>
-        </div>
-    </div>
+		</div>
+		<span class="help-block">200x200 if you're using 6, otherwise 275x275.</span>
+		<div class="image-group form-input-group">
+			<label class="full-label" for="opt-<%= option.id %>-img-credits">Image Credits</label>
+			<input id="opt-<%= option.id %>-img-credits" type="text" class="img-option-credits form-control input-sm" placeholder="Answer Image Credits" value="<%= option.imageCredits %>"/>
+		</div>
+	</div>
 </script>
 
 <script id="tpl-add-option-btn" type="text/template">
-    <div class="option-btn-container form-group" id="option-btn-<%= questionID %>">
-        <button class="add-option btn btn-default btn-sm" type="button" data-question="<%= questionID %>">+ Answer
-            (text)
-        </button>
-        <button class="add-img-option btn btn-default btn-sm" type="button" data-question="<%= questionID %>">+ Answer
-            (image)
-        </button>
-    </div>
+	<div class="option-btn-container form-group" id="option-btn-<%= questionID %>">
+		<button class="add-option btn btn-default btn-sm" type="button" data-question="<%= questionID %>">+ Answer (text)</button>
+		<button class="add-img-option btn btn-default btn-sm" type="button" data-question="<%= questionID %>">+ Answer (image)</button>
+	</div>
 </script>
 
 <script id="tpl-result" type="text/template">
-    <div class="result-container form-group" data-result="<%= id %>">
-        <div class="result-group input-del-group">
-            <label class="full-label" for="result-<%= id %>-title">Title <span class="required">*</span></label>
-            <input id="result-<%= id %>-title" type="text" class="result-title input-del form-control input-sm"
-                   placeholder="Title" value="<%= title %>"/>
-            <button class="btn btn-default glyphicon glyphicon-remove result-remove btn-xs" data-result="<%= id %>"
-                    tabindex="-1"></button>
-        </div>
-        <div class="result-group form-input-group">
-            <label class="full-label" for="result-<%= id %>-before-title">Before Title</label>
-            <input id="result-<%= id %>-before-title" type="text" class="form-control input-sm"
-                   placeholder="Before Title" value="<%= beforeTitle %>"/>
-            <span class="help-block">If you want to start the result with something other than "You're..."</span>
-        </div>
-        <div class="result-threshold-group result-group form-input-group">
-            <label class="full-label" for="result-<%= id %>-threshold">Threshold <span class="required">*</span></label>
-            <input id="result-<%= id %>-threshold" type="text" class="form-control input-sm" placeholder="Threshold"
-                   value="<%= threshold %>"/>
-            <span class="help-block">User has to score at least this to get this result</span>
-        </div>
-        <div class="result-group form-input-group">
-            <label class="full-label" for="result-<%= id %>-text">Text <span class="required">*</span></label>
-            <input id="result-<%= id %>-text" type="text" class="form-control input-sm" placeholder="Text"
-                   value="<%= text %>"/>
-        </div>
-        <div class="result-group form-input-group">
-            <label class="full-label" for="result-<%= id %>-fb-title">Facebook Title <span
-                class="required">*</span></label>
-            <input id="result-<%= id %>-fb-title" type="text" class="form-control input-sm" placeholder="Facebook Title"
-                   value="<%= facebookName %>"/>
-        </div>
-        <div class="result-group form-input-group">
-            <label class="full-label" for="result-<%= id %>-fb-text">Facebook Text</label>
-            <input id="result-<%= id %>-fb-text" type="text" class="form-control input-sm" placeholder="Facebook Text"
-                   value="<%= facebookDescription %>"/>
-        </div>
-        <div class="result-group form-input-group">
-            <label class="full-label" for="result-<%= id %>-twitter-text">Twitter Text <span
-                class="required">*</span></label>
-            <input id="result-<%= id %>-twitter-text" type="text" class="form-control input-sm"
-                   placeholder="Twitter Text" value="<%= twitterText %>"/>
-        </div>
-        <div class="image-group form-input-group">
-            <label class="full-label" for="result-<%= id %>-img">Image <span class="required">*</span></label>
-            <input id="result-<%= id %>-img" type="text" class="form-control input-sm" placeholder="Image"
-                   value="<%= image %>"/>
-            <span class="help-block">Example <code>result-1.jpg</code>. Ideally 450 x 450 square jpeg</span>
-        </div>
-        <div class="image-group form-input-group">
-            <label class="full-label" for="result-<%= id %>-share-img">Image for Sharing</label>
-            <input id="result-<%= id %>-share-img" type="text" class="form-control input-sm"
-                   placeholder="Image for Sharing" value="<%= shareImage %>"/>
-            <span class="help-block">Example <code>result-1-share.jpg</code>. Jpeg at least 1200 pixels wide. If you don't specify one we'll use the main image.</span>
-        </div>
-        <div class="image-group form-input-group">
-            <label class="full-label" for="result-<%= id %>-img-credits">Image Credits</label>
-            <input id="result-<%= id %>-img-credits" type="text" class="form-control input-sm"
-                   placeholder="Image Credits" value="<%= imageCredits %>"/>
-        </div>
-    </div>
+	<div class="result-container form-group" data-result="<%= id %>">
+		<div class="result-group input-del-group">
+			<label class="full-label" for="result-<%= id %>-title">Title <span class="required">*</span></label>
+			<input id="result-<%= id %>-title" type="text" class="result-title input-del form-control input-sm" placeholder="Title" value="<%= title %>"/>
+			<button class="btn btn-default glyphicon glyphicon-remove result-remove btn-xs" data-result="<%= id %>" tabindex="-1"></button>
+		</div>
+		<div class="result-group form-input-group">
+			<label class="full-label" for="result-<%= id %>-before-title">Before Title</label>
+			<input id="result-<%= id %>-before-title" type="text" class="form-control input-sm" placeholder="Before Title" value="<%= beforeTitle %>"/>
+			<span class="help-block">If you want to start the result with something other than "You're..."</span>
+		</div>
+		<div class="result-threshold-group result-group form-input-group">
+			<label class="full-label" for="result-<%= id %>-threshold">Threshold <span class="required">*</span></label>
+			<input id="result-<%= id %>-threshold" type="text" class="form-control input-sm" placeholder="Threshold" value="<%= threshold %>"/>
+			<span class="help-block">User has to score at least this to get this result</span>
+		</div>
+		<div class="result-group form-input-group">
+			<label class="full-label" for="result-<%= id %>-text">Text <span class="required">*</span></label>
+			<input id="result-<%= id %>-text" type="text" class="form-control input-sm" placeholder="Text" value="<%= text %>"/>
+		</div>
+		<div class="result-group form-input-group">
+			<label class="full-label" for="result-<%= id %>-fb-title">Facebook Title <span class="required">*</span></label>
+			<input id="result-<%= id %>-fb-title" type="text" class="form-control input-sm" placeholder="Facebook Title" value="<%= facebookName %>"/>
+		</div>
+		<div class="result-group form-input-group">
+			<label class="full-label" for="result-<%= id %>-fb-text">Facebook Text</label>
+			<input id="result-<%= id %>-fb-text" type="text" class="form-control input-sm" placeholder="Facebook Text" value="<%= facebookDescription %>"/>
+		</div>
+		<div class="result-group form-input-group">
+			<label class="full-label" for="result-<%= id %>-twitter-text">Twitter Text <span class="required">*</span></label>
+			<input id="result-<%= id %>-twitter-text" type="text" class="form-control input-sm" placeholder="Twitter Text" value="<%= twitterText %>"/>
+		</div>
+		<div class="image-group form-input-group">
+			<label class="full-label" for="result-<%= id %>-img">Image <span class="required">*</span></label>
+			<input id="result-<%= id %>-img" type="text" class="form-control input-sm" placeholder="Image" value="<%= image %>"/>
+			<span class="help-block">Example <code>result-1.jpg</code>. Ideally 450 x 450 square jpeg</span>
+		</div>
+		<div class="image-group form-input-group">
+			<label class="full-label" for="result-<%= id %>-share-img">Image for Sharing</label>
+			<input id="result-<%= id %>-share-img" type="text" class="form-control input-sm" placeholder="Image for Sharing" value="<%= shareImage %>"/>
+			<span class="help-block">Example <code>result-1-share.jpg</code>. Jpeg at least 1200 pixels wide. If you don't specify one we'll use the main image.</span>
+		</div>
+		<div class="image-group form-input-group">
+			<label class="full-label" for="result-<%= id %>-img-credits">Image Credits</label>
+			<input id="result-<%= id %>-img-credits" type="text" class="form-control input-sm" placeholder="Image Credits" value="<%= imageCredits %>"/>
+		</div>
+	</div>
 </script>
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
