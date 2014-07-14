@@ -8,7 +8,7 @@ session_regenerate_id();
 
 // WordPress site we're going to authenticate to
 define( 'WORDPRESS_DOMAIN', 'http://gareth.metro.co.uk' );
-define( 'APP_ROOT', 'metro-quizzes-2' );
+define( 'APP_ROOT', 'metro-quizzes-3' );
 
 // Base URL for this app
 $protocol = strpos( strtolower( $_SERVER[ 'SERVER_PROTOCOL' ] ), 'https' ) === FALSE ? 'http' : 'https';
