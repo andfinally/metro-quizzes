@@ -82,7 +82,7 @@ App.Views.EditQuiz = Backbone.View.extend({
 					resultsHTML += this.resultTemplate(results[i]);
 				}
 				$('#results').html(resultsHTML);
-			}			
+			}
 		}
 
 		this.delegateEvents();
